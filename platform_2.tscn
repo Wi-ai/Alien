@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcvcq2yimu7o4"]
+
+[ext_resource type="Texture2D" uid="uid://uekfeomai7i2" path="res://Assets/jumper-pack/Spritesheets/spritesheet_jumper.png" id="1_kxc3x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7u0o0"]
+size = Vector2(308, 74)
+
+[node name="Platform2" type="AnimatableBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -0.552389)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("1_kxc3x")
+region_enabled = true
+region_rect = Rect2(-2.92307, 283.359, 383.897, 97.4359)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_7u0o0")

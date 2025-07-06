@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://bih7rsxurtm6v"]
+
+[ext_resource type="Script" uid="uid://biy5uhhp118n6" path="res://Scripts/coins/item/star.gd" id="1_81buo"]
+[ext_resource type="Texture2D" uid="uid://djnah1as0a3pu" path="res://Assets/kenney_new-platformer-pack-1.0 - Copy/Spritesheets/spritesheet-tiles-double.png" id="1_462c6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_81buo"]
+atlas = ExtResource("1_462c6")
+region = Rect2(1280, 768, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8ovgb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_81buo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ukytv"]
+radius = 36.0555
+
+[node name="Star" type="Area2D"]
+script = ExtResource("1_81buo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, 0)
+sprite_frames = SubResource("SpriteFrames_8ovgb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_ukytv")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

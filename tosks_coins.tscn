@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://ttr6t63ir3ab"]
+
+[ext_resource type="Script" uid="uid://da0sd5j5t6f5f" path="res://Scripts/coins/coinset2/tosks_coins.gd" id="1_sud0q"]
+[ext_resource type="Texture2D" uid="uid://dx7c0gst2n00u" path="res://Assets/kenney_new-platformer-pack-1.0 - Copy/Spritesheets/spritesheet-tiles-default.png" id="2_oxraj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rsjbp"]
+atlas = ExtResource("2_oxraj")
+region = Rect2(960, 512, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5kqep"]
+atlas = ExtResource("2_oxraj")
+region = Rect2(960, 448, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oxj4i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rsjbp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5kqep")
+}],
+"loop": true,
+"name": &"Tosk",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6xy0a"]
+radius = 19.0263
+
+[node name="TosksCoins" type="Area2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_sud0q")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_oxj4i")
+animation = &"Tosk"
+autoplay = "Tosk"
+frame_progress = 0.0095999
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6xy0a")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

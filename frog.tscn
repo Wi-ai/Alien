@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://cx3q7c52tvgte"]
+
+[ext_resource type="Script" uid="uid://c1wytsohtxalh" path="res://Scripts/Enemies/frog.gd" id="1_ffctq"]
+[ext_resource type="Texture2D" uid="uid://d082nv6t6dqql" path="res://Assets/kenney_new-platformer-pack-1.0 - Copy/Spritesheets/spritesheet-enemies-double.png" id="2_8ckdl"]
+[ext_resource type="PackedScene" uid="uid://dw46oaomlqi3u" path="res://Scenes/killzone.tscn" id="3_1eoe2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gism6"]
+atlas = ExtResource("2_8ckdl")
+region = Rect2(512, 896, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qnfsl"]
+atlas = ExtResource("2_8ckdl")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_535nj"]
+atlas = ExtResource("2_8ckdl")
+region = Rect2(640, 128, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_inhi2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gism6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qnfsl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_535nj")
+}],
+"loop": true,
+"name": &"move",
+"speed": 3.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bh7gd"]
+radius = 62.0322
+
+[node name="frog" type="Node2D"]
+script = ExtResource("1_ffctq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_inhi2")
+animation = &"move"
+autoplay = "move"
+frame = 2
+frame_progress = 0.357024
+
+[node name="killzone" parent="." instance=ExtResource("3_1eoe2")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
+shape = SubResource("CircleShape2D_bh7gd")
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+position = Vector2(-56, 0)
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+position = Vector2(64, 0)

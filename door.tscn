@@ -1,0 +1,88 @@
+[gd_scene load_steps=12 format=3 uid="uid://b10tnijk1mirj"]
+
+[ext_resource type="Script" uid="uid://bg1o5p2pppy6x" path="res://Scripts/doors/In/L1/door.gd" id="1_fahql"]
+[ext_resource type="Texture2D" uid="uid://b8hd4qh6vom57" path="res://Assets/doors.png" id="1_w6aom"]
+[ext_resource type="PackedScene" uid="uid://ysqcd1itn7q" path="res://Scenes/interactable_component.tscn" id="2_p0e35"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p0e35"]
+atlas = ExtResource("1_w6aom")
+region = Rect2(0, 0, 128, 255)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fahql"]
+atlas = ExtResource("1_w6aom")
+region = Rect2(384, 0, 128, 255)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ab4ky"]
+atlas = ExtResource("1_w6aom")
+region = Rect2(384, 0, 128, 255)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a43ba"]
+atlas = ExtResource("1_w6aom")
+region = Rect2(384, 0, 128, 255)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_burcv"]
+atlas = ExtResource("1_w6aom")
+region = Rect2(0, 0, 128, 255)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kj2pw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p0e35")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fahql")
+}],
+"loop": false,
+"name": &"close_door",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ab4ky")
+}],
+"loop": false,
+"name": &"defult",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a43ba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_burcv")
+}],
+"loop": false,
+"name": &"open_door",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8c32u"]
+size = Vector2(128, 255)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fahql"]
+size = Vector2(238, 234)
+
+[node name="DoorG" type="StaticBody2D"]
+script = ExtResource("1_fahql")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_kj2pw")
+animation = &"defult"
+autoplay = "defult"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0.5)
+shape = SubResource("RectangleShape2D_8c32u")
+
+[node name="InteractableComponent" parent="." instance=ExtResource("2_p0e35")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableComponent"]
+position = Vector2(-1, 12)
+shape = SubResource("RectangleShape2D_fahql")
+debug_color = Color(0.813215, 0.162216, 0.907921, 0.42)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.6
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

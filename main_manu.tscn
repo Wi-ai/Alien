@@ -1,0 +1,126 @@
+[gd_scene load_steps=8 format=3 uid="uid://bpobn1keixb6g"]
+
+[ext_resource type="Script" uid="uid://drtdfpid2cl0w" path="res://Scripts/main_manu.gd" id="1_5uxu5"]
+[ext_resource type="Texture2D" uid="uid://5ck347de1fic" path="res://Sample A.png" id="1_na007"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5uxu5"]
+texture = ExtResource("1_na007")
+modulate_color = Color(0.325441, 0.325441, 0.325441, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xo5pf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_na007"]
+bg_color = Color(0.623834, 0.73466, 0.84715, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+shadow_color = Color(0, 0, 0, 0.301961)
+shadow_size = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5uxu5"]
+bg_color = Color(0.566049, 0.607219, 0.789154, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+shadow_color = Color(0, 0, 0, 0.301961)
+shadow_size = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xo5pf"]
+bg_color = Color(0.498226, 0.736194, 0.755058, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+shadow_color = Color(0, 0, 0, 0.301961)
+shadow_size = 3
+
+[node name="MainManu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5uxu5")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_5uxu5")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.503
+anchor_top = 0.559
+anchor_right = 0.503
+anchor_bottom = 0.559
+offset_left = -165.456
+offset_top = -87.232
+offset_right = 164.544
+offset_bottom = 87.768
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xo5pf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_na007")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5uxu5")
+theme_override_styles/normal = SubResource("StyleBoxFlat_xo5pf")
+text = "Start game"
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xo5pf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_na007")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5uxu5")
+theme_override_styles/normal = SubResource("StyleBoxFlat_xo5pf")
+text = "Options"
+
+[node name="Button3" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xo5pf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_na007")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5uxu5")
+theme_override_styles/normal = SubResource("StyleBoxFlat_xo5pf")
+text = "Exit"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.194
+anchor_right = 0.5
+anchor_bottom = 0.194
+offset_left = -95.0
+offset_top = -36.712
+offset_right = 102.0
+offset_bottom = 30.288
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 5
+theme_override_font_sizes/font_size = 48
+text = "Alien"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_exit_pressed"]

@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://di2jjbrj6ko0w"]
+
+[ext_resource type="Script" uid="uid://bx5lj33e4yjrh" path="res://Scripts/Enemies/bee_moing.gd" id="1_7g0ge"]
+[ext_resource type="Texture2D" uid="uid://d082nv6t6dqql" path="res://Assets/kenney_new-platformer-pack-1.0 - Copy/Spritesheets/spritesheet-enemies-double.png" id="2_hl68u"]
+[ext_resource type="PackedScene" uid="uid://dw46oaomlqi3u" path="res://Scenes/killzone.tscn" id="3_7oo2i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dsxrb"]
+atlas = ExtResource("2_hl68u")
+region = Rect2(896, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ub5fr"]
+atlas = ExtResource("2_hl68u")
+region = Rect2(896, 256, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_btr3t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dsxrb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ub5fr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qk1ub"]
+size = Vector2(118, 71)
+
+[node name="BeeMoing" type="Node2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_7g0ge")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_btr3t")
+autoplay = "default"
+frame = 1
+frame_progress = 0.148508
+
+[node name="killzone" parent="." instance=ExtResource("3_7oo2i")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
+position = Vector2(1, 13.5)
+shape = SubResource("RectangleShape2D_qk1ub")
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+target_position = Vector2(-68, 1)
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+target_position = Vector2(67, 0)

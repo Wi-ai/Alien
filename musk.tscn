@@ -1,0 +1,111 @@
+[gd_scene load_steps=13 format=3 uid="uid://133entqq6khk"]
+
+[ext_resource type="Texture2D" uid="uid://bkvvfs45imxod" path="res://Assets/kenney_new-platformer-pack-1.0 - Copy/Spritesheets/spritesheet-characters-double.png" id="1_65uas"]
+[ext_resource type="Script" uid="uid://cl047quh8otyx" path="res://Scripts/musk.gd" id="1_80l43"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_556rp"]
+atlas = ExtResource("1_65uas")
+region = Rect2(1024, 1280, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0a48"]
+atlas = ExtResource("1_65uas")
+region = Rect2(1024, 1536, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sr061"]
+atlas = ExtResource("1_65uas")
+region = Rect2(1024, 1024, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_80l43"]
+atlas = ExtResource("1_65uas")
+region = Rect2(1024, 768, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lnig7"]
+atlas = ExtResource("1_65uas")
+region = Rect2(1024, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l3t8g"]
+atlas = ExtResource("1_65uas")
+region = Rect2(768, 1536, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vlp4m"]
+atlas = ExtResource("1_65uas")
+region = Rect2(768, 1792, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_er4o6"]
+atlas = ExtResource("1_65uas")
+region = Rect2(1024, 512, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_556rp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_556rp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k0a48")
+}],
+"loop": true,
+"name": &"climb",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sr061")
+}],
+"loop": true,
+"name": &"crawl",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_80l43")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lnig7")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l3t8g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vlp4m")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_er4o6")
+}],
+"loop": true,
+"name": &"slide",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k0a48"]
+radius = 74.0
+
+[node name="musk" type="CharacterBody2D"]
+z_index = 5
+collision_layer = 2
+script = ExtResource("1_80l43")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -127)
+sprite_frames = SubResource("SpriteFrames_556rp")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -78)
+shape = SubResource("CircleShape2D_k0a48")

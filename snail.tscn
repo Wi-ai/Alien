@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://cra4l1qtmusrr"]
+
+[ext_resource type="Script" uid="uid://b4y1s2wd4qs3d" path="res://Scripts/Enemies/snail.gd" id="1_fnba0"]
+[ext_resource type="Texture2D" uid="uid://d082nv6t6dqql" path="res://Assets/kenney_new-platformer-pack-1.0 - Copy/Spritesheets/spritesheet-enemies-double.png" id="1_qjijy"]
+[ext_resource type="PackedScene" uid="uid://dw46oaomlqi3u" path="res://Scenes/killzone.tscn" id="2_fnba0"]
+[ext_resource type="Texture2D" uid="uid://x61r22l32vj7" path="res://Assets/kenney_new-platformer-pack-1.0 - Copy/Spritesheets/spritesheet-enemies-default.png" id="3_oks1q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_casb8"]
+atlas = ExtResource("1_qjijy")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uqs8f"]
+atlas = ExtResource("1_qjijy")
+region = Rect2(128, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ukm5x"]
+atlas = ExtResource("3_oks1q")
+region = Rect2(64, 192, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5dokh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_casb8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uqs8f")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ukm5x")
+}],
+"loop": true,
+"name": &"squashed",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cyufb"]
+size = Vector2(105, 82)
+
+[node name="Snail" type="Node2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_fnba0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_5dokh")
+autoplay = "default"
+
+[node name="killzone" parent="." instance=ExtResource("2_fnba0")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
+position = Vector2(0, 22)
+shape = SubResource("RectangleShape2D_cyufb")
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+position = Vector2(-52, 0)
+target_position = Vector2(0, 70)
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+position = Vector2(52, 0)
+target_position = Vector2(0, 70)

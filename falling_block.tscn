@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://b44n0c5fixb6b"]
+
+[ext_resource type="Script" uid="uid://4j28stvlwmg7" path="res://Scripts/Enemies/falling_block.gd" id="1_tg246"]
+[ext_resource type="Texture2D" uid="uid://d082nv6t6dqql" path="res://Assets/kenney_new-platformer-pack-1.0 - Copy/Spritesheets/spritesheet-enemies-double.png" id="2_2cues"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bibbp"]
+atlas = ExtResource("2_2cues")
+region = Rect2(768, 768, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35nd8"]
+atlas = ExtResource("2_2cues")
+region = Rect2(768, 896, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wwbpl"]
+atlas = ExtResource("2_2cues")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v46el"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bibbp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_35nd8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wwbpl")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8h2ak"]
+size = Vector2(128, 128)
+
+[node name="fallingBlock" type="Area2D"]
+script = ExtResource("1_tg246")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_v46el")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8h2ak")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
